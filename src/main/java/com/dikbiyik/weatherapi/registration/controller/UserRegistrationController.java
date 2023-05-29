@@ -12,9 +12,9 @@ import com.dikbiyik.weatherapi.appuser.AppUser;
 import com.dikbiyik.weatherapi.appuser.dto.UserRegistrationDto;
 import com.dikbiyik.weatherapi.appuser.repository.AppUserRepository;
 import com.dikbiyik.weatherapi.appuser.service.AppUserRegistrationService;
-import com.dikbiyik.weatherapi.auth.AuthenticationRequest;
 import com.dikbiyik.weatherapi.configuration.JwtService;
 import com.dikbiyik.weatherapi.generic.rest.GenericApiResponse;
+import com.dikbiyik.weatherapi.registration.dto.AuthenticationRequestDto;
 
 
 @RestController
@@ -41,7 +41,7 @@ public class UserRegistrationController {
     }
 
     @PostMapping("/authenticate")
-    public GenericApiResponse authenticate(@RequestBody AuthenticationRequest request) {
+    public GenericApiResponse authenticate(@RequestBody AuthenticationRequestDto request) {
         authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(request.getLogin(), request.getPassword()));
         var user = userRepository.findByLogin(request.getLogin()).orElseThrow();

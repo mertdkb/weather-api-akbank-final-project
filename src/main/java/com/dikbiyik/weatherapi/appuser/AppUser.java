@@ -29,6 +29,8 @@ public class AppUser implements UserDetails{
     private String login;
 
     private String password;
+
+    private List<String> savedCities;
     
     @Enumerated(EnumType.STRING)
     private Role role;

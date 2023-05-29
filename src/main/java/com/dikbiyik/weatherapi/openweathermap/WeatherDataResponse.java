@@ -6,12 +6,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class WeatherData {
-
-    public String cod;
-    public int message;
+public class WeatherDataResponse {
+    
     public int cnt;
+
     public ArrayList<List> list;
+
     public City city;
 
     public static class City{
@@ -329,22 +329,6 @@ public class WeatherData {
         public void setPod(String pod) {
             this.pod = pod;
         }
-    }
-
-    public String getCod() {
-        return cod;
-    }
-
-    public void setCod(String cod) {
-        this.cod = cod;
-    }
-
-    public int getMessage() {
-        return message;
-    }
-
-    public void setMessage(int message) {
-        this.message = message;
     }
 
     public int getCnt() {

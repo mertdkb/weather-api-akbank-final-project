@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dikbiyik.weatherapi.generic.rest.GenericApiResponse;
-import com.dikbiyik.weatherapi.openweathermap.WeatherData;
-import com.dikbiyik.weatherapi.openweathermap.WeatherData.Weather;
+import com.dikbiyik.weatherapi.openweathermap.WeatherDataResponse;
+import com.dikbiyik.weatherapi.openweathermap.WeatherDataResponse.Weather;
 import com.dikbiyik.weatherapi.openweathermap.service.WeatherFeignClient;
 import com.dikbiyik.weatherapi.openweathermap.service.WeatherService;
 
@@ -25,7 +25,7 @@ public class OwmController {
     @GetMapping(value = "/current")
     public GenericApiResponse getCurrentTempOfCity(@RequestParam String city) {
 
-        WeatherData weatherData = weatherService.getWeather(city);
+        WeatherDataResponse weatherData = weatherService.getWeather(city);
 
         return new GenericApiResponse(200, "Success", "44894654", weatherData);
     }

@@ -1,4 +1,4 @@
-package com.dikbiyik.weatherapi.auth;
+package com.dikbiyik.weatherapi.registration.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
+public class AuthenticationResponseDto {
 
-    private String login;
-
-    private String password;
+    private String token;
 }

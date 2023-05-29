@@ -2,7 +2,7 @@ package com.dikbiyik.weatherapi.openweathermap.service;
 
 import org.springframework.stereotype.Service;
 
-import com.dikbiyik.weatherapi.openweathermap.WeatherData;
+import com.dikbiyik.weatherapi.openweathermap.WeatherDataResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -17,12 +17,12 @@ public class WeatherService {
         this.feignClient = feignClient;
     }
 
-    public WeatherData getWeather(String q) {
+    public WeatherDataResponse getWeather(String q) {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            WeatherData responseData = objectMapper.readValue(feignClient.weatherData(q, apiKey),WeatherData.class);
+            WeatherDataResponse responseData = objectMapper.readValue(feignClient.weatherData(q, apiKey),WeatherDataResponse.class);
 
             return responseData;
         } catch (
