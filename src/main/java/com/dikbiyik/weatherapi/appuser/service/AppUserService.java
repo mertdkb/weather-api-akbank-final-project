@@ -1,5 +1,6 @@
 package com.dikbiyik.weatherapi.appuser.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,32 +26,32 @@ public class AppUserService {
         return this.userRepository.save(user);
     }
 
-    public AppUser getUserById(String id){
+    public AppUser getUserById(String id) {
         return this.userRepository.findById(id).orElseThrow();
     }
 
-    public AppUser getUserByLogin(String login){
+    public AppUser getUserByLogin(String login) {
         return this.userRepository.findByLogin(login).orElseThrow();
     }
 
-    public List<AppUser> getAllUsers(){
+    public List<AppUser> getAllUsers() {
         return this.userRepository.findAll();
     }
 
-    public void deleteUser(AppUser user){
+    public void deleteUser(AppUser user) {
         this.userRepository.delete(user);
     }
 
-    public void deleteUserById(String id){
+    public void deleteUserById(String id) {
         this.userRepository.deleteById(id);
     }
 
-    public void deleteUserByLogin(String login){
+    public void deleteUserByLogin(String login) {
         AppUser user = getUserByLogin(login);
         deleteUser(user);
     }
-    
-    public Map<String, WeatherDataResponse> getUsersSavedCitiesWeatherData(String login){
+
+    public Map<String, WeatherDataResponse> getUsersSavedCitiesWeatherData(String login) {
         AppUser user = getUserByLogin(login);
         List<String> cities = user.getSavedCities();
         Map<String, WeatherDataResponse> citiesData = new HashMap<>();
@@ -59,7 +60,27 @@ public class AppUserService {
             citiesData.put(city, weatherService.getWeather(city));
         }
         return citiesData;
-        
     }
-    
+
+    public AppUser addSavedCityToAppUser(String login, String city) {
+        AppUser user = getUserByLogin(login);
+        List<String> cities = user.getSavedCities();
+        if (cities == null) {
+            cities = new ArrayList<String>();
+        }
+        cities.add(city);
+        user.setSavedCities(cities);
+        userRepository.save(user);
+        return user;
+    }
+
+    public AppUser deleteSavedCityFromAppUser(String login, String city) {
+        AppUser user = getUserByLogin(login);
+        List<String> cities = user.getSavedCities();
+        cities.remove(city);
+        user.setSavedCities(cities);
+        userRepository.save(user);
+        return user;
+    }
+
 }
