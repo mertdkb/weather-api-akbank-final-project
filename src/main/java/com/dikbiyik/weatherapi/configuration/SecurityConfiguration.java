@@ -27,7 +27,16 @@ public class SecurityConfiguration {
             .csrf()
             .disable()
             .authorizeHttpRequests()
-            .requestMatchers("/api/v1/auth/**", "api/v1/weather/**")
+            .requestMatchers(
+    "/api/v1/auth/**",
+                "api/v1/weather/**",
+                "/swagger-ui/**",
+                "/configuration/ui",
+                "/swagger-resources/",
+                "/configuration/security",
+                "/webjars/",
+                "/v3/api-docs/**"
+                )
             .permitAll()
             .anyRequest()
             .authenticated()
@@ -40,3 +49,5 @@ public class SecurityConfiguration {
         return http.build();
     }
 }
+
+

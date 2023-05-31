@@ -20,12 +20,21 @@ public class AppUserRegistrationService {
     }
 
     public AppUser registerAppUser(AuthenticationRequestDto authRequestDto){
+        AppUser user = createValidUser(authRequestDto);
+        user.setRole(Role.APPUSER);
+        return this.userService.createUser(user);
+    }
+    
+    public AppUser registerAdminUser(AuthenticationRequestDto authRequestDto){
+        AppUser user = createValidUser(authRequestDto);
+        user.setRole(Role.ADMIN);
+        return this.userService.createUser(user);
+    }
 
+    private AppUser createValidUser(AuthenticationRequestDto authRequestDto) {
         AppUser user = new AppUser();
         user.setLogin(authRequestDto.getLogin());
         user.setPassword(bCryptPasswordEncoder.encode(authRequestDto.getPassword()));
-        user.setRole(Role.APPUSER);
-
-        return this.userService.createUser(user);
-    }   
+        return user;
+    }
 }

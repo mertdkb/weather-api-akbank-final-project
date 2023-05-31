@@ -38,7 +38,7 @@ public class UserRegistrationController {
     private UserMapper userMapper;
 
     @PostMapping("/app-user")
-    public GenericApiResponse createServiceProviderOrganizationAdminUser(@RequestBody AuthenticationRequestDto authRequestDto) {
+    public GenericApiResponse createAppUser(@RequestBody AuthenticationRequestDto authRequestDto) {
         AppUser user = userRegistrationService.registerAppUser(authRequestDto);
         var response = userMapper.userToDto(user);
         return new GenericApiResponse(200, "Success", "54987463", response);
