@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dikbiyik.weatherapi.appuser.AppUser;
 import com.dikbiyik.weatherapi.appuser.dto.UserRegistrationDto;
+import com.dikbiyik.weatherapi.appuser.mapper.UserMapper;
 import com.dikbiyik.weatherapi.appuser.repository.AppUserRepository;
 import com.dikbiyik.weatherapi.appuser.service.AppUserRegistrationService;
 import com.dikbiyik.weatherapi.configuration.JwtService;
@@ -33,11 +34,14 @@ public class UserRegistrationController {
     @Autowired
     private AppUserRegistrationService userRegistrationService;
 
-    @PostMapping("/app-user")
-    public GenericApiResponse createServiceProviderOrganizationAdminUser(@RequestBody UserRegistrationDto userRegistrationDto) {
-        AppUser user = userRegistrationService.registerAppUser(userRegistrationDto.getLogin(), userRegistrationDto.getPassword());
+    @Autowired
+    private UserMapper userMapper;
 
-        return new GenericApiResponse(200, "Success", "54987463", user);
+    @PostMapping("/app-user")
+    public GenericApiResponse createServiceProviderOrganizationAdminUser(@RequestBody AuthenticationRequestDto authRequestDto) {
+        AppUser user = userRegistrationService.registerAppUser(authRequestDto);
+        var response = userMapper.userToDto(user);
+        return new GenericApiResponse(200, "Success", "54987463", response);
     }
 
     @PostMapping("/authenticate")

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.dikbiyik.weatherapi.appuser.AppUser;
 import com.dikbiyik.weatherapi.appuser.Role;
+import com.dikbiyik.weatherapi.registration.dto.AuthenticationRequestDto;
 
 @Service
 public class AppUserRegistrationService {
@@ -18,11 +19,11 @@ public class AppUserRegistrationService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    public AppUser registerAppUser(String login, String password){
+    public AppUser registerAppUser(AuthenticationRequestDto authRequestDto){
 
         AppUser user = new AppUser();
-        user.setLogin(login);
-        user.setPassword(bCryptPasswordEncoder.encode(password));
+        user.setLogin(authRequestDto.getLogin());
+        user.setPassword(bCryptPasswordEncoder.encode(authRequestDto.getPassword()));
         user.setRole(Role.APPUSER);
 
         return this.userService.createUser(user);
