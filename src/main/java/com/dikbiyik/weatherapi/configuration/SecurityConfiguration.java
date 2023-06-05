@@ -32,6 +32,8 @@ public class SecurityConfiguration {
                 "api/v1/weather/**",
                 "api.openweathermap.org/data/2.5/forecast",
                 "/swagger-ui/**",
+                "/swagger-ui.html/**",
+                "/api-docs/**",
                 "/configuration/ui",
                 "/swagger-resources/",
                 "/configuration/security",

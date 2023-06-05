@@ -21,5 +21,10 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 openweathermap:
   apiKey: a748d7cb922d8fe594bb609d1ce8a144
-  
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui: 
+    path: /swagger-ui.html
+    enabled: true
   
