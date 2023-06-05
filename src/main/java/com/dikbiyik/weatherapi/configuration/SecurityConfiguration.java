@@ -30,6 +30,7 @@ public class SecurityConfiguration {
             .requestMatchers(
     "/api/v1/auth/**",
                 "api/v1/weather/**",
+                "api.openweathermap.org/data/2.5/forecast",
                 "/swagger-ui/**",
                 "/configuration/ui",
                 "/swagger-resources/",

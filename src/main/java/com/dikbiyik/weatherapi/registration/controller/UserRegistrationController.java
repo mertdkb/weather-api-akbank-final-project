@@ -15,6 +15,7 @@ import com.dikbiyik.weatherapi.appuser.repository.AppUserRepository;
 import com.dikbiyik.weatherapi.appuser.service.AppUserRegistrationService;
 import com.dikbiyik.weatherapi.configuration.JwtService;
 import com.dikbiyik.weatherapi.generic.rest.GenericApiResponse;
+import com.dikbiyik.weatherapi.kafka.service.KafkaService;
 import com.dikbiyik.weatherapi.registration.dto.AuthenticationRequestDto;
 
 
@@ -50,6 +51,7 @@ public class UserRegistrationController {
                 .authenticate(new UsernamePasswordAuthenticationToken(request.getLogin(), request.getPassword()));
         var user = userRepository.findByLogin(request.getLogin()).orElseThrow();
         var jwtToken = jwtService.generateToken(user);
+
         return new GenericApiResponse(200, "Success", "51687431", jwtToken);
     }
 }
