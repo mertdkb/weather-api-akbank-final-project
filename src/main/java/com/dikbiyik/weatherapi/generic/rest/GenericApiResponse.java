@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 public class GenericApiResponse {
 
-	private Integer code;
+	private int code;
 
 	private String message;
 	
@@ -29,7 +29,7 @@ public class GenericApiResponse {
 		this.resulthashcode = null;
 	}
 
-	public GenericApiResponse(Integer code , String message) {
+	public GenericApiResponse(int code , String message) {
 		super();
 		this.code = code;
 		this.message = message;
@@ -38,7 +38,7 @@ public class GenericApiResponse {
 		this.resulthashcode = null;
 	}
 
-	public GenericApiResponse(Integer code, String message, String responsecode) {
+	public GenericApiResponse(int code, String message, String responsecode) {
 		super();
 		this.code = code;
 		this.message = message;
@@ -47,7 +47,7 @@ public class GenericApiResponse {
 		this.resulthashcode = null;
 	}
 	
-	public GenericApiResponse(Integer code, String message, String responsecode, Object object) {
+	public GenericApiResponse(int code, String message, String responsecode, Object object) {
 		super();
 		this.code = code;
 		this.message = message;
@@ -56,7 +56,7 @@ public class GenericApiResponse {
 		this.resulthashcode = null;
 	}
 	
-	public GenericApiResponse(Integer code, String message, String responsecode, Object object, String resulthashcode) {
+	public GenericApiResponse(int code, String message, String responsecode, Object object, String resulthashcode) {
 		super();
 		this.code = code;
 		this.message = message;

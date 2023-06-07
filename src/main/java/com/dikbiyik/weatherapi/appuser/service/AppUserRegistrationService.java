@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.dikbiyik.weatherapi.appuser.AppUser;
 import com.dikbiyik.weatherapi.appuser.Role;
 import com.dikbiyik.weatherapi.registration.dto.AuthenticationRequestDto;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 @Service
 public class AppUserRegistrationService {
@@ -19,13 +20,13 @@ public class AppUserRegistrationService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    public AppUser registerAppUser(AuthenticationRequestDto authRequestDto){
+    public AppUser registerAppUser(AuthenticationRequestDto authRequestDto) throws JsonProcessingException{
         AppUser user = createValidUser(authRequestDto);
         user.setRole(Role.APPUSER);
         return this.userService.createUser(user);
     }
     
-    public AppUser registerAdminUser(AuthenticationRequestDto authRequestDto){
+    public AppUser registerAdminUser(AuthenticationRequestDto authRequestDto) throws JsonProcessingException{
         AppUser user = createValidUser(authRequestDto);
         user.setRole(Role.ADMIN);
         return this.userService.createUser(user);

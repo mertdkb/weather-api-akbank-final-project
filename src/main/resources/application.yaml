@@ -19,6 +19,7 @@ spring:
       bootstrap-servers: http://localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
 openweathermap:
   apiKey: a748d7cb922d8fe594bb609d1ce8a144
 springdoc:
@@ -27,4 +28,3 @@ springdoc:
   swagger-ui: 
     path: /swagger-ui.html
     enabled: true
-  
